@@ -4,7 +4,6 @@
 
 def matrix_transpose(matrix):
     """Transpose a matrix"""
-
     transposed = []
 
     for i in range(len(matrix[0])):
