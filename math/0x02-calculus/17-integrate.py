@@ -4,23 +4,18 @@
 
 def poly_integral(poly, C=0):
     """calculates the integral of a polynomial"""
-    if type(poly) != list or len(poly) == 0:
+    if type(poly) != list or len(poly) == 0 \
+            or type(poly[0]) not in [int, float] \
+            or type(C) not in [int, float]:
         return None
 
-    result = [C]
-    if poly == [0]:
-        return result
-    for i in range(len(poly)):
-        if type(poly[i]) not in [int, float]:
-            return None
-        coef = poly[i] / (i + 1)
-        if coef % 1 == 0:
-            coef = int(coef)
-        result.append(coef)
+    result = [poly[i] / (i + 1) for i in range(len(poly))]
+    result.insert(0, C)
+    cleaned = [int(i) if i % 1 == 0 else i for i in result]
 
-    index = len(poly) - 1
-    while result[index] == 0:
-        result.pop(index)
+    index = len(cleaned) - 1
+    while cleaned[index] == 0:
+        cleaned.pop(index)
         index -= 1
 
-    return result
+    return cleaned
