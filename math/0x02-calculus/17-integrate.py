@@ -10,8 +10,8 @@ def poly_integral(poly, C=0):
         return None
 
     result = [poly[i] / (i + 1) for i in range(len(poly))]
+    result.insert(0, C)
     cleaned = [int(i) if i % 1 == 0 else i for i in result]
-    cleaned.insert(0, C)
 
     index = len(poly) - 1
     while cleaned[index] == 0:
