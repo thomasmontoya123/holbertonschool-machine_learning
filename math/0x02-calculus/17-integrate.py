@@ -8,6 +8,8 @@ def poly_integral(poly, C=0):
         return None
 
     result = [C]
+    if poly == [0]:
+        return result
     for i in range(len(poly)):
         if type(poly[i]) not in [int, float]:
             return None
