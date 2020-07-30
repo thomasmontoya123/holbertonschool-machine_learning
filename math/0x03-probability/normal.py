@@ -39,3 +39,14 @@ class Normal(object):
         pdf = 1 / (self.stddev * (2 * self.pi) ** 0.5) * \
             self.e ** (- (x - self.mean)**2 / (2 * self.stddev**2))
         return pdf
+
+    def cdf(self, x):
+        """Calculates the value of the CDF for a given x-value"""
+        val_erf = (x - self.mean) / (self.stddev * 2 ** 0.5)
+
+        erf = erf = (2 / 3.1415926536 ** 0.5) * \
+            (val_erf - (val_erf ** 3) / 3 + (val_erf ** 5) / 10 -
+                (val_erf ** 7) / 42 + (val_erf ** 9) / 216)
+
+        cdf = (1 / 2) * (1 + erf)
+        return cdf
