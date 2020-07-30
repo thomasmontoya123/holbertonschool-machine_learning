@@ -4,6 +4,7 @@
 
 class Exponential(object):
     """Represents an exponential distribution"""
+    e = 2.7182818285
 
     def __init__(self, data=None, lambtha=1.):
         """Constructor"""
@@ -21,3 +22,11 @@ class Exponential(object):
             else:
                 self.lambtha = 1 / (sum(data) / len(data))
                 self.lambtha = float(self.lambtha)
+
+    def pdf(self, x):
+        """Calculates the value of the PDF for a given time period"""
+        if x < 0:
+            return 0
+        else:
+            pdf = self.lambtha * self.e ** (- self.lambtha * x)
+            return pdf
