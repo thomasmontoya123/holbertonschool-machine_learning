@@ -4,6 +4,11 @@
 import numpy as np
 
 
+def sigmoid(z):
+    # Activation function used to map any real value between 0 and 1
+    return 1 / (1 + np.exp(-z))
+
+
 class Neuron(object):
     """Defines a single neuron performing binary classification"""
 
@@ -53,10 +58,26 @@ class Neuron(object):
         """Calculates the forward propagation of the neuron.
                 Parameters
                 ----------
-                X : numpy.ndarray.
+                X : numpy.ndarray
                     shape (nx, m) that contains the input data
         """
-        e = 2.7182818285
         values = np.matmul(self.__W, X) + self.__b
-        self.__A = 1 / (1 + e ** - values)  # Sigmoid
+        self.__A = sigmoid(values)
         return self.__A
+
+    def cost(self, Y, A):
+        """Calculates the forward propagation of the neuron.
+                Parameters
+                ----------
+                Y : numpy.ndarray
+                    shape (1, m) Contains the correct labels
+                    for the input data
+                A : numpy.ndarray.
+                    shape (1, m) containing the activated output
+                    (Predictions) of the neuron for each example
+        """
+        m = Y.shape[1]
+        cost = -1 / m * np.sum(Y * np.log(A) + (1 - Y) *
+                               (np.log(1.0000001 - A)))
+
+        return cost
