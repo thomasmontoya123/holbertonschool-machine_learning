@@ -26,6 +26,7 @@ class Neuron(object):
         """
         if type(nx) != int:
             raise TypeError("nx must be an integer")
+
         elif nx < 1:
             raise ValueError("nx must be a positive integer")
 
