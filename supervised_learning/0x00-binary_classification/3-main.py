@@ -12,4 +12,5 @@ np.random.seed(0)
 neuron = Neuron(X.shape[0])
 A = neuron.forward_prop(X)
 cost = neuron.cost(Y, A)
+
 print(cost)

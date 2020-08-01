@@ -72,7 +72,7 @@ class Neuron(object):
                 Y : numpy.ndarray
                     shape (1, m) Contains the correct labels
                     for the input data
-                A : numpy.ndarray.
+                A : numpy.ndarray
                     shape (1, m) containing the activated output
                     (Predictions) of the neuron for each example
         """
