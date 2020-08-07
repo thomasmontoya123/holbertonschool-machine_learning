@@ -66,7 +66,8 @@ class Neuron(object):
         return self.__A
 
     def cost(self, Y, A):
-        """Calculates the cost of the model using logistic regression
+        """
+            Calculates the forward propagation of the neuron.
                 Parameters
                 ----------
                 Y : numpy.ndarray
@@ -77,13 +78,12 @@ class Neuron(object):
                     (Predictions) of the neuron for each example
         """
         m = Y.shape[1]
-        cost = -1 / m * np.sum(Y * np.log(A) + (1 - Y) *
-                               (np.log(1.0000001 - A)))
-
+        cost = -np.sum(Y * np.log(A) + (1 - Y) * (np.log(1.0000001 - A))) / m
         return cost
 
     def evaluate(self, X, Y):
-        """Evaluates the neuron’s predictions
+        """
+                Evaluates the neuron’s predictions
                 Parameters
                 ----------
                 X : numpy.ndarray
