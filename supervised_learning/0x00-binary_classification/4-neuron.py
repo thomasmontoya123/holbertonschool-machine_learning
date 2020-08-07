@@ -5,7 +5,7 @@ import numpy as np
 
 
 def sigmoid(z):
-    # Activation function used to map any real value between 0 and 1
+    """ Activation function used to map any real value between 0 and 1 """
     return 1 / (1 + np.exp(-z))
 
 
