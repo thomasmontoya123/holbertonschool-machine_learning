@@ -50,11 +50,13 @@ class Neuron(object):
         return self.__A
 
     def forward_prop(self, X):
-        """Calculates the forward propagation of the neuron.
+        """
+            Calculates the forward propagation of the neuron.
                 Parameters
                 ----------
                 X : numpy.ndarray.
                     shape (nx, m) that contains the input data
+
         """
         e = 2.7182818285
         values = np.matmul(self.__W, X) + self.__b
