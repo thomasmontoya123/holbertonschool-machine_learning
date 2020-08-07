@@ -55,7 +55,8 @@ class Neuron(object):
         return self.__A
 
     def forward_prop(self, X):
-        """Calculates the forward propagation of the neuron.
+        """
+            Calculates the forward propagation of the neuron.
                 Parameters
                 ----------
                 X : numpy.ndarray
@@ -66,7 +67,8 @@ class Neuron(object):
         return self.__A
 
     def cost(self, Y, A):
-        """Calculates the forward propagation of the neuron.
+        """
+            Calculates the forward propagation of the neuron.
                 Parameters
                 ----------
                 Y : numpy.ndarray
