@@ -58,7 +58,6 @@ class Neuron(object):
                     shape (nx, m) that contains the input data
 
         """
-        e = 2.7182818285
         values = np.matmul(self.__W, X) + self.__b
-        self.__A = 1 / (1 + e ** - values)  # Sigmoid
+        self.__A = 1/(1 + np.exp(-values))  # Sigmoid
         return self.__A
