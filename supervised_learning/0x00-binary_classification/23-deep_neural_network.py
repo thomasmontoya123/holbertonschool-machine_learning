@@ -218,7 +218,9 @@ class DeepNeuralNetwork(object):
                 if graph:
                     iterations_steps.append(i)
                     costs_steps.append(cost)
-
+        if verbose:
+            A, cost = self.evaluate(X, Y)
+            print('Cost after {} iterations: {}'.format(iterations, cost))
         if graph:
             plt.plot(iterations_steps, costs_steps, 'b-')
             plt.title('Training Cost')
