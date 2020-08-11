@@ -18,8 +18,10 @@ def one_hot_encode(Y, classes):
         return None
     if (type(classes) != int or classes < 1 or classes < np.amax(Y)):
         return None
-    shape = (classes, Y.max() + 1)
-    one_hot = np.zeros(shape)
-    rows = np.arange(len(Y))
+
+    m = len(Y)
+    one_hot = np.zeros((classes, m))
+    rows = np.arange(m)
     one_hot[Y, rows] = 1
+
     return one_hot
