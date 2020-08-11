@@ -14,6 +14,10 @@ def one_hot_encode(Y, classes):
             classes : int
                 maximum number of classes found in Y
     """
+    if type(Y) != np.ndarray or len(Y) < 1:
+        return None
+    if (type(classes) != int or classes < 1 or classes < np.amax(Y)):
+        return None
     shape = (classes, Y.max() + 1)
     one_hot = np.zeros(shape)
     rows = np.arange(classes)
