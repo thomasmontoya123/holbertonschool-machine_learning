@@ -162,7 +162,8 @@ class DeepNeuralNetwork(object):
             self.__weights["W{}".format(i)] = w - alpha * dw
             self.__weights["b{}".format(i)] = b - alpha * db
 
-    def train(self, X, Y, iterations=5000, alpha=0.05, verbose=True, graph=True, step=100):
+    def train(self, X, Y, iterations=5000, alpha=0.05,
+              verbose=True, graph=True, step=100):
         """
             Trains the neuron
                 Parameters
