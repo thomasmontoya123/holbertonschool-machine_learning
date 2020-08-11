@@ -20,6 +20,6 @@ def one_hot_encode(Y, classes):
         return None
     shape = (classes, Y.max() + 1)
     one_hot = np.zeros(shape)
-    rows = np.arange(classes)
+    rows = np.arange(len(Y))
     one_hot[Y, rows] = 1
     return one_hot
