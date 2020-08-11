@@ -10,4 +10,5 @@ Y = lib['Y_train'][:10]
 
 print(Y)
 Y_one_hot = oh_encode(Y, 10)
+
 print(Y_one_hot)

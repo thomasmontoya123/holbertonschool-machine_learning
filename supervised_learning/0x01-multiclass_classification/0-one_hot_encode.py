@@ -23,4 +23,5 @@ def one_hot_encode(Y, classes):
     one_hot = np.zeros((classes, m))
     rows = np.arange(m)
     one_hot[Y, rows] = 1
+
     return one_hot
