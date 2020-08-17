@@ -13,6 +13,6 @@ def normalization_constants(X):
             X : numpy.ndarray
                 shape (m, nx) to normalize
                     m is the number of data points
-                    nx is the number of features
+                    nx is the number of features.
     """
     return np.mean(X, axis=0), np.std(X, axis=0)
