@@ -1,4 +1,4 @@
-# !/usr/bin/env python3
+#!/usr/bin/env python3
 """mini batch  module"""
 
 import tensorflow as tf
