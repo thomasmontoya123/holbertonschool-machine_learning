@@ -97,7 +97,7 @@ def train_mini_batch(X_train, Y_train, X_valid, Y_valid, batch_size=32,
                     Y_batch = Y_shuffled[start:stop]
                     sess.run(train_op, feed_dict={x: X_batch, y: Y_batch})
 
-                    if (i + 1) % 100 == 0 and i != 0:
+                    if i != 0 and (i + 1) % 100 == 0:
                         batch_loss = sess.run(loss, feed_dict={x: X_batch,
                                                                y: Y_batch})
 
