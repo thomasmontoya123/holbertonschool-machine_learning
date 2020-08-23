@@ -6,6 +6,26 @@ import tensorflow as tf
 shuffle_data = __import__('2-shuffle_data').shuffle_data
 
 
+def mode_loader(path):
+    """
+        model load
+            Parameters
+            ----------
+            path : str
+                model to load
+    """
+    sess = tf.Session()
+
+    saver = tf.train.import_meta_graph(path + ".meta")
+    saver.restore(sess, path)
+    x = tf.get_collection("x")[0]
+    y = tf.get_collection("y")[0]
+    accuracy = tf.get_collection("accuracy")[0]
+    loss = tf.get_collection("loss")[0]
+    train_op = tf.get_collection("train_op")[0]
+    return x, y, accuracy, loss, train_op, saver, sess
+
+
 def train_mini_batch(X_train, Y_train, X_valid, Y_valid, batch_size=32,
                      epochs=5, load_path="/tmp/model.ckpt",
                      save_path="/tmp/model.ckpt"):
@@ -41,19 +61,14 @@ def train_mini_batch(X_train, Y_train, X_valid, Y_valid, batch_size=32,
             save_path : str
                 path to where the model should be saved after training
     """
+    x, y, accuracy, loss, train_op, saver, sess = mode_loader(load_path)
+
     m = X_train.shape[0]
     batch_len = m // batch_size
     if m % batch_size != 0:
         batch_len += 1
 
-    with tf.Session() as sess:
-        saver = tf.train.import_meta_graph(load_path + ".meta")
-        saver.restore(sess, load_path)
-        x = tf.get_collection("x")[0]
-        y = tf.get_collection("y")[0]
-        accuracy = tf.get_collection("accuracy")[0]
-        loss = tf.get_collection("loss")[0]
-        train_op = tf.get_collection("train_op")[0]
+    with sess:
         for epoch in range(epochs + 1):
             train_cost, train_accuracy = sess.run([loss, accuracy],
                                                   feed_dict={x: X_train,
@@ -63,11 +78,11 @@ def train_mini_batch(X_train, Y_train, X_valid, Y_valid, batch_size=32,
                                               feed_dict={x: X_valid,
                                                          y: Y_valid})
 
-            print("After {} epochs".format(epoch))
-            print("\tTraining Cost: {}".format(train_cost))
-            print("\tTraining Accuracy: {}".format(train_accuracy))
-            print("\tValidation Cost: {}".format(val_cost))
-            print("\tValidation Accuracy: {}".format(val_accuracy))
+            print(f"After {epoch} epochs")
+            print(f"\tTraining Cost: {train_cost}")
+            print(f"\tTraining Accuracy: {train_accuracy}")
+            print(f"\tValidation Cost: {val_cost}")
+            print(f"\tValidation Accuracy: {val_accuracy}")
 
             if epoch < epochs:
                 X_shuffled, Y_shuffled = shuffle_data(X_train, Y_train)
@@ -90,9 +105,9 @@ def train_mini_batch(X_train, Y_train, X_valid, Y_valid, batch_size=32,
                                                   feed_dict={x: X_batch,
                                                              y: Y_batch})
 
-                        print("\tStep {}:".format(i + 1))
-                        print("\t\tCost: {}".format(batch_loss))
-                        print("\t\tAccuracy: {}".format(batch_accuracy))
+                        print(f"\tStep {i + 1}:")
+                        print(f"\t\tCost: {batch_loss}")
+                        print(f"\t\tAccuracy: {batch_accuracy}")
 
         save_path = saver.save(sess, save_path)
-        return save_path
+    return save_path
