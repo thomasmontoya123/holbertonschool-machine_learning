@@ -78,7 +78,7 @@ def train_mini_batch(X_train, Y_train, X_valid, Y_valid, batch_size=32,
                                               feed_dict={x: X_valid,
                                                          y: Y_valid})
 
-            print("After {} epochs".format(epoch))
+            print("After {} epochs:".format(epoch))
             print("\tTraining Cost: {}".format(train_cost))
             print("\tTraining Accuracy: {}".format(train_accuracy))
             print("\tValidation Cost: {}".format(val_cost))
