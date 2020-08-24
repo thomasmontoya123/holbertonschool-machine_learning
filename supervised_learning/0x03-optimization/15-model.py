@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""all togheter module """
+"""all together module """
 
 import numpy as np
 import tensorflow as tf
@@ -267,6 +267,7 @@ def model(Data_train, Data_valid, layers, activations,
     saver = tf.train.Saver()
     with tf.Session() as sess:
         sess.run(tf.global_variables_initializer())
+
         for epoch in range(epochs + 1):
             train_cost, train_accuracy = sess.run([loss, accuracy],
                                                   feed_dict={x: X_train,
@@ -285,12 +286,17 @@ def model(Data_train, Data_valid, layers, activations,
             if epoch < epochs:
                 X_shuffled, Y_shuffled = shuffle_data(X_train, Y_train)
 
+                sess.run(global_step.assign(epoch))
+                sess.run(alpha)
+
                 for i in range(batch_len):
+
                     start = i * batch_size
                     if i * batch_size < m:
                         stop = i * batch_size + batch_size
                     else:
                         stop = m
+
                     X_batch = X_shuffled[start:stop]
                     Y_batch = Y_shuffled[start:stop]
                     sess.run(train_op, feed_dict={x: X_batch, y: Y_batch})
