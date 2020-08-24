@@ -85,6 +85,44 @@ def create_layer(prev, n, activation):
     return model(prev)
 
 
+def create_batch_norm_layer(prev, n, activation):
+    """
+       creates a batch normalization layer for a neural network in tensorflow
+            Parameters
+            ----------
+            prev : activated output of the previous layer
+
+            n :  number of nodes in the layer to be created
+
+            activation : activation function that should be
+                used on the output of the layer
+    """
+
+    if activation is None:
+        return create_layer(prev, n, activation)
+
+    init = tf.contrib.layers.variance_scaling_initializer(mode="FAN_AVG")
+    epsilon = 1e-8
+    model = tf.layers.Dense(units=n,
+                            activation=None,
+                            kernel_initializer=init,
+                            name='layer')
+
+    mean, variance = tf.nn.moments(model(prev), axes=0, keep_dims=True)
+
+    beta = tf.Variable(tf.constant(0.0, shape=[n]), trainable=True)
+    gamma = tf.Variable(tf.constant(1.0, shape=[n]), trainable=True)
+
+    normalized = tf.nn.batch_normalization(model(prev),
+                                           mean=mean,
+                                           variance=variance,
+                                           offset=beta,
+                                           scale=gamma,
+                                           variance_epsilon=epsilon)
+
+    return activation(normalized)
+
+
 def forward_prop(x, layer_sizes=[], activations=[]):
     """
         creates the forward propagation graph for the neural network:
@@ -99,46 +137,14 @@ def forward_prop(x, layer_sizes=[], activations=[]):
                 Contains the activation functions for each
                 layer of the network
     """
-    y_pred = create_layer(x, layer_sizes[0], activations[0])
+    y_pred = create_batch_norm_layer(x, layer_sizes[0], activations[0])
 
     for i in range(1, len(layer_sizes)):
-        y_pred = create_layer(y_pred, layer_sizes[i], activations[i])
+        y_pred = create_batch_norm_layer(y_pred,
+                                         layer_sizes[i],
+                                         activations[i])
 
     return y_pred
-
-
-def create_batch_norm_layer(prev, n, activation):
-    """
-       creates a batch normalization layer for a neural network in tensorflow
-            Parameters
-            ----------
-            prev : activated output of the previous layer
-
-            n :  number of nodes in the layer to be created
-
-            activation : activation function that should be
-                used on the output of the layer
-    """
-    init = tf.contrib.layers.variance_scaling_initializer(mode="FAN_AVG")
-    epsilon = 1e-8
-    model = tf.layers.Dense(units=n,
-                            activation=None,
-                            kernel_initializer=init,
-                            name='layer')
-
-    mean, variance = tf.nn.moments(model(prev), axes=0, keep_dims=True)
-
-    beta = tf.Variable(tf.constant(0.0, shape=[n]), trainable=True)
-    gamma = tf.Variable(tf.constant(1.0, shape=[n]), trainable=True)
-
-    normaliced = tf.nn.batch_normalization(model(prev),
-                                           mean=mean,
-                                           variance=variance,
-                                           offset=beta,
-                                           scale=gamma,
-                                           variance_epsilon=epsilon)
-
-    return activation(normaliced)
 
 
 def create_placeholders(nx, classes):
