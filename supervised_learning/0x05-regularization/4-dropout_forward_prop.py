@@ -34,6 +34,8 @@ def dropout_forward_prop(X, weights, L, keep_prob):
 
         if i == L - 1:
             A = softmax(values)
+            cache[A_key] = A
+
         else:
             A = np.tanh(values)
             cache[dropout_key] = dropout
