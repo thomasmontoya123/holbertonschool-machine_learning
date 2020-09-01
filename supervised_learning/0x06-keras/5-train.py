@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Train module"""
 
+import tensorflow.keras as K
+
 
 def train_model(network, data, labels, batch_size,
                 epochs, validation_data=None, verbose=True, shuffle=False):
