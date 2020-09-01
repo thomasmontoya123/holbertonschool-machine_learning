@@ -16,7 +16,7 @@ def build_model(nx, layers, activations, lambtha, keep_prob):
         :param keep_prob: probability that a node will be kept for dropout
     """
     x = K.Input(shape=(nx,))
-    L2 = K.regularizers.l2(l=lambtha)
+    L2 = K.regularizers.L1L2(l2=lambtha)
 
     y = K.layers.Dense(units=layers[0],
                        activation=activations[0],
