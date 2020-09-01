@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Keras input module"""
 
-from tensorflow import keras
+import tensorflow.keras as K
 
 
 def build_model(nx, layers, activations, lambtha, keep_prob):
@@ -15,19 +15,19 @@ def build_model(nx, layers, activations, lambtha, keep_prob):
         :param lambtha: L2 regularization parameter
         :param keep_prob: probability that a node will be kept for dropout
     """
-    x = keras.Input(shape=(nx,))
-    L2 = keras.regularizers.l2(l=lambtha)
+    x = K.Input(shape=(nx,))
+    L2 = K.regularizers.l2(l=lambtha)
 
-    y = keras.layers.Dense(units=layers[0],
-                           activation=activations[0],
-                           kernel_regularizer=L2,
-                           input_shape=(nx,))(x)
+    y = K.layers.Dense(units=layers[0],
+                       activation=activations[0],
+                       kernel_regularizer=L2,
+                       input_shape=(nx,))(x)
 
     for i in range(1, len(layers)):
-        y = keras.layers.Dropout(rate=1 - keep_prob)(y)
-        y = keras.layers.Dense(units=layers[i],
-                               activation=activations[i],
-                               kernel_regularizer=L2, )(y)
+        y = K.layers.Dropout(rate=1 - keep_prob)(y)
+        y = K.layers.Dense(units=layers[i],
+                           activation=activations[i],
+                           kernel_regularizer=L2, )(y)
 
-    model = keras.Model(x, y)
+    model = K.Model(x, y)
     return model

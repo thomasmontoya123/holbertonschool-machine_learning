@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """One-hot with keras module"""
 
-from tensorflow import keras
+import tensorflow.keras as K
 
 
 def one_hot(labels, classes=None):
@@ -10,5 +10,5 @@ def one_hot(labels, classes=None):
         :param labels: labels
         :param classes: number of classes
     """
-    return keras.utils.to_categorical(y=labels,
-                                      num_classes=classes)
+    return K.utils.to_categorical(y=labels,
+                                  num_classes=classes)

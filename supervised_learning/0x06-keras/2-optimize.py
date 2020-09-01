@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Optimize module"""
 
-from tensorflow import keras
+import tensorflow.keras as K
 
 
 def optimize_model(network, alpha, beta1, beta2):
@@ -13,9 +13,9 @@ def optimize_model(network, alpha, beta1, beta2):
     :param beta1: first Adam optimization parameter
     :param beta2: Second Adam optimization parameter
     """
-    optimizer = keras.optimizers.Adam(lr=alpha,
-                                      beta_1=beta1,
-                                      beta_2=beta2)
+    optimizer = K.optimizers.Adam(lr=alpha,
+                                  beta_1=beta1,
+                                  beta_2=beta2)
 
     network.compile(optimizer=optimizer,
                     loss='categorical_crossentropy',

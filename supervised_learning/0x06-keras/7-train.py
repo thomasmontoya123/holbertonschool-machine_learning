@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from tensorflow import keras
+import tensorflow.keras as K
 
 
 def train_model(network, data, labels, batch_size, epochs,
@@ -37,14 +37,14 @@ def train_model(network, data, labels, batch_size, epochs,
         return alpha / (1 + decay_rate * epoch)
 
     if validation_data and learning_rate_decay:
-        decay_ck = keras.callbacks.LearningRateScheduler(schedule=lr_scheduler,
-                                                         verbose=True)
+        decay_ck = K.callbacks.LearningRateScheduler(schedule=lr_scheduler,
+                                                     verbose=True)
 
         callbacks.append(decay_ck)
 
     if early_stopping and validation_data:
-        early_stop = keras.callbacks.EarlyStopping(monitor='val_loss',
-                                                   patience=patience)
+        early_stop = K.callbacks.EarlyStopping(monitor='val_loss',
+                                               patience=patience)
 
         callbacks.append(early_stop)
 
