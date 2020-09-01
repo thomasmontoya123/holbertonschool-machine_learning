@@ -44,7 +44,7 @@ def train_model(network, data, labels, batch_size, epochs,
     if save_best:
         checkpoint = K.callbacks.ModelCheckpoint(filepath,
                                                  monitor='val_loss',
-                                                 save_best_only=save_best)
+                                                 save_best_only=True)
 
         callbacks.append(checkpoint)
 
