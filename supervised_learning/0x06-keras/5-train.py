@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""Train module"""
 
 
 def train_model(network, data, labels, batch_size,
