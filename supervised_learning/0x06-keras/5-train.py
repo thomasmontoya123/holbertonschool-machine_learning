@@ -22,10 +22,12 @@ def train_model(network, data, labels, batch_size,
             batches every epoch
         :param validation_data : data to validate the model with
     """
-    return network.fit(x=data,
-                       y=labels,
-                       batch_size=batch_size,
-                       epochs=epochs,
-                       verbose=verbose,
-                       shuffle=shuffle,
-                       validation_data=validation_data)
+    history = network.fit(x=data,
+                          y=labels,
+                          batch_size=batch_size,
+                          epochs=epochs,
+                          verbose=verbose,
+                          shuffle=shuffle,
+                          validation_data=validation_data)
+
+    return history
