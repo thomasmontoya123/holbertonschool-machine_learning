@@ -44,6 +44,7 @@ def convolve_channels(images, kernel, padding='same', stride=(1, 1)):
             j = x * stride_w
             output[:, y, x] = (kernel *
                                in_padded[:, i: i + kernel_h,
-                                         j: j + kernel_w]).sum(axis=(1, 2, 3))
+                                         j: j + kernel_w,
+                                         :]).sum(axis=(1, 2, 3))
 
     return output
