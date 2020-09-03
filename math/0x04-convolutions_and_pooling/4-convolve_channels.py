@@ -14,8 +14,8 @@ def convolve_channels(images, kernel, padding='same', stride=(1, 1)):
         :param padding: either a tuple of (ph, pw), ‘same’, or ‘valid
         :param stride: tuple of (sh, sw)
     """
-    m, input_w, input_h, input_ch = images.shape
-    kernel_w, kernel_h, kernel_ch = kernel.shape
+    m, input_h, input_w, input_ch = images.shape
+    kernel_h, kernel_w, kernel_ch = kernel.shape
     stride_h, stride_w = stride
 
     if padding == 'same':
