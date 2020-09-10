@@ -43,12 +43,12 @@ def conv_forward(A_prev, W, b, activation, padding="same", stride=(1, 1)):
             for z in range(c_new):
                 i = x * sh
                 j = y * sw
-                output[:, y, x, z] = (W[:, :, :, z] *
+                output[:, x, y, z] = (W[:, :, :, z] *
                                       in_padded[:, i: i + kh,
                                       j: j + kw,
                                       :]).sum(axis=(1, 2, 3))
 
-                output[:, y, x, z] = activation(output[:, y, x, z] +
+                output[:, x, y, z] = activation(output[:, x, y, z] +
                                                 b[0, 0, 0, z])
 
     return output
