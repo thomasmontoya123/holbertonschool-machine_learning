@@ -157,7 +157,7 @@ ubuntu@alexa-ml:~/supervised_learning/0x07-cnn$ ./0-main.py
 -   Directory: `supervised_learning/0x07-cnn`
 -   File: `0-conv_forward.py`
 
-Check your code?
+
 
  
 #### 1\. Pooling Forward Prop mandatory
@@ -231,7 +231,7 @@ ubuntu@alexa-ml:~/supervised_learning/0x07-cnn$ ./1-main.py
 -   Directory: `supervised_learning/0x07-cnn`
 -   File: `1-pool_forward.py`
 
-Check your code?
+
 
 
 
@@ -606,7 +606,7 @@ ubuntu@alexa-ml:~/supervised_learning/0x07-cnn$
 -   Directory: `supervised_learning/0x07-cnn`
 -   File: `2-conv_backward.py`
 
-Check your code?
+
 
  
 
@@ -962,7 +962,7 @@ ubuntu@alexa-ml:~/supervised_learning/0x07-cnn$
 -   Directory: `supervised_learning/0x07-cnn`
 -   File: `3-pool_backward.py`
 
-Check your code?
+
 
  
 
@@ -1063,7 +1063,6 @@ After 5 epochs: 0.01851615309715271 cost, 0.9940599799156189 accuracy, 0.0494666
 -   Directory: `supervised_learning/0x07-cnn`
 -   File: `4-lenet5.py`
 
-Check your code?
 
  
 
@@ -1159,8 +1158,6 @@ Epoch 5/5
 -   Directory: `supervised_learning/0x07-cnn`
 -   File: `5-lenet5.py`
 
-Check your code?
-
  
 
 #### 6\. Summarize Like a Pro mandatory
@@ -1178,7 +1175,3 @@ Your posts should have examples and at least one picture, at the top. Publish yo
 When done, please add all URLs below (blog post, tweet, etc.)
 
 Please, remember that these blogs must be written in English to further your technical ability in a variety of settings.
-
-#### Add URLs here:
-
-Copyright © 2020 Holberton School. All rights reserved.
