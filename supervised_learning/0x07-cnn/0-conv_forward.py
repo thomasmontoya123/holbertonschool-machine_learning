@@ -48,4 +48,7 @@ def conv_forward(A_prev, W, b, activation, padding="same", stride=(1, 1)):
                                       j: j + kw,
                                       :]).sum(axis=(1, 2, 3))
 
+                output[:, y, x, z] = activation(output[:, y, x, z] +
+                                                b[0, 0, 0, z])
+
     return output
