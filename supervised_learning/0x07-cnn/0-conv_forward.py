@@ -41,8 +41,8 @@ def conv_forward(A_prev, W, b, activation, padding="same", stride=(1, 1)):
     for x in range(conv_h):
         for y in range(conv_w):
             for z in range(c_new):
-                i = y * sh
-                j = x * sw
+                i = x * sh
+                j = y * sw
                 output[:, y, x, z] = (W[:, :, :, z] *
                                       in_padded[:, i: i + kh,
                                       j: j + kw,
