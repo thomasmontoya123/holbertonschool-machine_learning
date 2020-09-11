@@ -10,47 +10,42 @@ def lenet5(X):
 
         :param X: K.Input of shape (m, 28, 28, 1)
             containing the input images for the network
-        
     """
 
     init = K.initializers.he_normal()
-    optimizer = K.optimizers.Adam()
-
     C1 = K.layers.Conv2D(filters=6,
                          kernel_size=(5, 5),
                          padding='same',
                          activation='relu',
                          kernel_initializer=init)(X)
 
-    S2 = K.layers.MaxPool2D(pool_size=(2, 2),
-                            strides=(2, 2))(C1)
+    S2 = K.layers.MaxPool2D(pool_size=(2, 2), strides=(2, 2))(C1)
 
     C3 = K.layers.Conv2D(filters=16,
                          kernel_size=(5, 5),
+                         padding='valid',
                          activation='relu',
                          kernel_initializer=init)(S2)
 
-    S4 = K.layers.MaxPool2D(pool_size=(2, 2),
-                            strides=(2, 2))(C3)
+    S3 = K.layers.MaxPool2D(pool_size=(2, 2), strides=(2, 2))(C3)
 
-    S4 = K.layers.Flatten()(S4)
+    S3 = K.layers.Flatten()(S3)
 
-    F5 = K.layers.Dense(units=120,
+    F4 = K.layers.Dense(units=120,
                         activation='relu',
-                        kernel_initializer=init)(S4)
+                        kernel_initializer=init)(S3)
 
-    F6 = K.layers.Dense(units=84,
+    F5 = K.layers.Dense(units=84,
                         activation='relu',
-                        kernel_initializer=init)(F5)
+                        kernel_initializer=init)(F4)
 
     out = K.layers.Dense(units=10,
                          activation='softmax',
-                         kernel_initializer=init)(F6)
+                         kernel_initializer=init)(F5)
 
-    model = K.Model(inputs=X, outputs=out)
+    network = K.Model(inputs=X, outputs=out)
 
-    model.compile(optimizer=optimizer,
-                  loss='categorical_crossentropy',
-                  metrics=['accuracy'])
-
-    return model
+    network.compile(optimizer=K.optimizers.Adam(),
+                    loss='categorical_crossentropy',
+                    metrics=['accuracy'])
+    return network
