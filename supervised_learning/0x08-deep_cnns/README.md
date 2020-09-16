@@ -3,7 +3,7 @@
 
  Specializations - Machine Learning -- Supervised Learning
 
-![](https://holbertonintranet.s3.amazonaws.com/uploads/medias/2018/12/b65616d913a345dcbd8e.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUWMNL5ANN%2F20200916%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20200916T151452Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=3232d630c6c48e25806d01670e32f2743a41f006e07c2c198a452950dd91fafd)
+![test](https://holbertonintranet.s3.amazonaws.com/uploads/medias/2018/12/b65616d913a345dcbd8e.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUWMNL5ANN%2F20200916%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20200916T151452Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=3232d630c6c48e25806d01670e32f2743a41f006e07c2c198a452950dd91fafd)
 
 Resources
 ---------
