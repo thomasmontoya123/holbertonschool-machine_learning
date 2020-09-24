@@ -2,7 +2,6 @@
 """Transfer learning app module"""
 
 import tensorflow.keras as K
-from tensorflow import keras as K
 import tensorflow as tf
 import datetime
 
