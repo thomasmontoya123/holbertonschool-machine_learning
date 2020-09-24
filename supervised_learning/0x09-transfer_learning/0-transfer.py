@@ -3,7 +3,6 @@
 
 import tensorflow.keras as K
 import tensorflow as tf
-import datetime
 
 
 def preprocess_data(X, Y):
