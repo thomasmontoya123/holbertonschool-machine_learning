@@ -53,12 +53,6 @@ if __name__ == '__main__':
                                             input_shape=(160, 160, 3),
                                             pooling='max')
 
-    # freeze layers to avoid destroying any of the information they
-    # contain during future training rounds
-    # for i in base_model.layers[:200]:
-    #  i.trainable = False
-    # base_model.trainable = False
-
     # add top layers
     out = base_model.output
     out = K.layers.Flatten()(out)
