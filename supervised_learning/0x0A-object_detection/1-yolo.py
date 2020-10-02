@@ -100,8 +100,8 @@ class Yolo(object):
             ph = self.anchors[i, :, 1]
             pw = self.anchors[i, :, 0]
 
-            bh = (ph * np.exp(th)) / input_w
-            bw = (pw * np.exp(tw)) / input_h
+            bh = (ph * np.exp(th)) / input_h
+            bw = (pw * np.exp(tw)) / input_w
 
             x1 = bx - bw / 2
             x2 = x1 + bw
