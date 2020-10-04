@@ -138,19 +138,21 @@ class Yolo(object):
         for confidence, class_prob in zip(box_confidences, box_class_probs):
             scores.append(confidence * class_prob)
 
-        score_max = [score.argmax(axis=3) for score in scores]
-        score_max = [score.reshape(-1) for score in score_max]
-        box_scores = np.concatenate(score_max)
-        min_prob_idx = np.where(box_scores < self.class_t)
-        box_scores = np.delete(box_scores, min_prob_idx)
+        scores_list = [score.max(axis=3) for score in scores]
+        scores_list = [score.reshape(-1) for score in scores_list]
+        box_scores = np.concatenate(scores_list)
 
-        class_max = [box.argmax(axis=3) for box in scores]
-        class_max = [box.reshape(-1) for box in class_max]
-        box_classes = np.concatenate(class_max)
-        box_classes = np.delete(box_classes, min_prob_idx)
+        min_prob = np.where(box_scores < self.class_t)
+
+        box_scores = np.delete(box_scores, min_prob)
+
+        classes_list = [box.argmax(axis=3) for box in scores]
+        classes_list = [box.reshape(-1) for box in classes_list]
+        box_classes = np.concatenate(classes_list)
+        box_classes = np.delete(box_classes, min_prob)
 
         boxes_list = [box.reshape(-1, 4) for box in boxes]
         boxes = np.concatenate(boxes_list, axis=0)
-        filtered_boxes = np.delete(boxes, min_prob_idx, axis=0)
+        filtered_boxes = np.delete(boxes, min_prob, axis=0)
 
         return filtered_boxes, box_classes, box_scores
